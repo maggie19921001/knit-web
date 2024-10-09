@@ -11,7 +11,9 @@
     "deploy":"vite build && gh-pages -d dist"
   },
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "pinia": "^2.1.7",
+    "sass": "^1.79.4",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
@@ -20,6 +22,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "gh-pages": "^6.1.1",
+    "sass-embedded": "^1.79.4",
     "vite": "^5.3.1"
   }
 }
