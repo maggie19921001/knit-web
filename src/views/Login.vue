@@ -1,7 +1,9 @@
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
 
 const email = ref('');
@@ -9,13 +11,19 @@ const password = ref('');
 const loginData = ref({
   username: email,
   password: password,
-})
+});
+const token = ref('');
 
 const signIn = async () => {
   try {
-    const api = `${process.env.VITE_APP_API}admin/signin`;
+    const api = `${import.meta.env.VITE_APP_API}admin/signin`;
     const res = await axios.post(api, loginData.value);
-    console.log(res);
+    token.value = res.data.token;
+    const expired = new Date(res.data.expired);
+    
+    document.cookie = `loginToken=${token.value}; expires=${expired.toUTCString()}`; 
+    router.push('/dashboard')
+    
   } catch (error) {
     console.error('Error during sign in:', error);
   }
