@@ -13,7 +13,7 @@ const loginData = ref({
 
 const signIn = async () => {
   try {
-    const api = `${process.env.VUE_APP_API}admin/signin`;
+    const api = `${process.env.VITE_APP_API}admin/signin`;
     const res = await axios.post(api, loginData.value);
     console.log(res);
   } catch (error) {

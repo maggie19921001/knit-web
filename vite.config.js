@@ -8,7 +8,7 @@ export default defineConfig(({command, mode})=>{
   const env = (loadEnv(mode, process.cwd(), ''))
     return{
       define:{
-        'process.env.VUE_APP_API': JSON.stringify(env.VUE_APP_API),
+        'process.env.VITE_APP_API': JSON.stringify(env.VITE_APP_API),
       },
       base:'/knit-web/',
       plugins: [
