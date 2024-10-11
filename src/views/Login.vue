@@ -1,17 +1,31 @@
 <script setup>
+import axios from "axios";
 import { ref } from "vue";
+
+
 
 const email = ref('');
 const password = ref('');
 const loginData = ref({
-  email: email,
+  username: email,
   password: password,
 })
+
+const signIn = async () => {
+  try {
+    const api = `${process.env.VUE_APP_API}admin/signin`;
+    const res = await axios.post(api, loginData.value);
+    console.log(res);
+  } catch (error) {
+    console.error('Error during sign in:', error);
+  }
+};
+
 </script>
 <template>
     <div class="container mt-5">
       <form class="row justify-content-center"
-        >
+        @submit.prevent="signIn">
         <div class="col-md-6">
           <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
           <div class="mb-2">
@@ -23,7 +37,7 @@ const loginData = ref({
               placeholder="Email address"
               required
               autofocus
-              
+              v-model="email"
             />
           </div>
           <div class="mb-2">
@@ -34,7 +48,7 @@ const loginData = ref({
               class="form-control"
               placeholder="Password"
               required
-              
+              v-model="password"
             />
           </div>
           <div class="text-end mt-4">
