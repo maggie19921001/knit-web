@@ -13,7 +13,7 @@ const loginData = ref({
   password: password,
 });
 const token = ref('');
-
+//登入
 const signIn = async () => {
   try {
     const api = `${import.meta.env.VITE_APP_API}admin/signin`;
@@ -21,8 +21,9 @@ const signIn = async () => {
     token.value = res.data.token;
     const expired = new Date(res.data.expired);
     
-    document.cookie = `loginToken=${token.value}; expires=${expired.toUTCString()}`; 
-    router.push('/dashboard')
+    document.cookie = `loginToken=${token.value}; expires=${expired.toUTCString()};path=/;`; 
+    
+    router.push('/dashboard/products')
     
   } catch (error) {
     console.error('Error during sign in:', error);

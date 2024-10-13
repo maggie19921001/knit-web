@@ -1,8 +1,10 @@
 <template>
-    Dashboard
+    <Navbar />
+    <RouterView />
 </template>
 
 <script setup>
+import Navbar from "../components/Navbar.vue"
 import axios from "axios";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
