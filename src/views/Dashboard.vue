@@ -1,6 +1,9 @@
 <template>
-    <Navbar />
+<Navbar />
+<div class="container-fluid">
     <RouterView />
+</div>
+    
 </template>
 
 <script setup>
