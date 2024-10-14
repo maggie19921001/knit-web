@@ -33,11 +33,13 @@
     </tr>
   </tbody>
 </table>
+<ProductModal />
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import ProductModal from '../components/ProductModal.vue';
 
 const products = ref([]);
 const pagination = ref({});
