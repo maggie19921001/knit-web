@@ -32,7 +32,7 @@
       <td>
         <div class="btn-group">
           <button class="btn btn-outline-primary btn-sm" @click="openProductModal(false, item)">編輯</button>
-          <button class="btn btn-outline-danger btn-sm">刪除</button>
+          <button class="btn btn-outline-danger btn-sm" @click="openDelProductModal(item)">刪除</button>
         </div>
       </td>
     </tr>
@@ -40,16 +40,20 @@
 </table>
 <ProductModal ref="productModal" v-bind:product="tempProduct" 
 @update-product="updateProduct"/>
+<DelModal :item="tempProduct" ref="delModal" @del-item="delProduct"/>
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
 import ProductModal from '../components/ProductModal.vue';
+import DelModal from '../components/DeleteModal.vue';
 
 const products = ref([]);
 const pagination = ref({});
-const productModal = ref(null)
+const productModal = ref(null);
+const delModal = ref(null);
+
 const tempProduct = ref({});// 用於傳遞給子組件的臨時產品數據
 const isNew = ref(false);
 
@@ -74,7 +78,7 @@ const openProductModal = ( newStatus, item ) => {
   } else {
     tempProduct.value = {...item};
   }
-  // isNew.value = isNew;
+  isNew.value = newStatus;
   productModal.value.showModal()
 }
 
@@ -99,6 +103,26 @@ const updateProduct = async(item) => {
     console.error('Error during update product:', error);
   }
 }
+
+ // 開啟刪除 Modal
+const openDelProductModal = (item) => {
+  tempProduct.value = { ...item };
+  delModal.value.showModal();
+}
+
+const delProduct = async() => {
+  try {
+    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/product/${tempProduct.value.id}`;
+    const res = await axios.delete(api);
+    
+    if(res.data.success) {
+      delModal.value.hideModal();
+      getProducts();
+    }
+  } catch (error) {
+    console.error('Error during delete product:', error);
+  }
+};
 
 </script>
 
