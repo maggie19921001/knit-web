@@ -21,7 +21,7 @@
               <label for="customFile" class="form-label">或 上傳圖片
                 <i class="fas fa-spinner fa-spin"></i>
               </label>
-              <input type="file" id="customFile" class="form-control">
+              <input type="file" id="customFile" class="form-control" ref="fileInput" @change="uploadFile">
             </div>
             <img class="img-fluid" alt="">
             <!-- 延伸技巧，多圖 -->
@@ -112,6 +112,7 @@
 </template>
 
 <script setup>
+import axios from "axios";
 import { ref, onMounted, defineProps, watch } from 'vue';
 import Modal from 'bootstrap/js/dist/modal';
 
@@ -160,6 +161,47 @@ const hideModal = () => {
   if (modalInstance) {
     modalInstance.hide()
   }
+}
+
+
+const fileInput = ref(null)
+const uploadFile = async() => {
+
+  try {
+    const uploadedFile = fileInput.value.files[0];
+
+    // 加入檔案驗證
+    if (!uploadedFile) {
+      alert('請選擇檔案');
+      return;
+    }
+
+    // 檢查檔案類型
+    if (!uploadedFile.type.match('image.*')) {
+      alert('請上傳圖片檔案');
+      return;
+    }
+
+    const formData = new FormData;
+    formData.append('file-to-upload',uploadedFile);
+
+    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/upload`;
+    const res = await axios.post(api,formData);
+
+    if (res.data.success) {
+      tempProduct.value.imageUrl = res.data.imageUrl;
+      alert('上傳成功');
+      console.log(tempProduct.value);
+    }else {
+      // 處理上傳失敗
+      alert(res.data.message || '上傳失敗');
+    }
+
+  } catch (error) {
+    console.error('上傳失敗:', error);
+    alert('上傳失敗，請稍後再試');
+  }
+
 }
 
 // 暴露方法供父组件调用

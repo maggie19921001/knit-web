@@ -1,6 +1,6 @@
 <template>
   <div class="text-end">
-    <button class="btn btn-primary" type="button" @click="openProductModal">
+    <button class="btn btn-primary" type="button" @click="openProductModal(true)">
       增加一個產品
     </button>
   </div>
@@ -31,7 +31,7 @@
       </td>
       <td>
         <div class="btn-group">
-          <button class="btn btn-outline-primary btn-sm">編輯</button>
+          <button class="btn btn-outline-primary btn-sm" @click="openProductModal(false, item)">編輯</button>
           <button class="btn btn-outline-danger btn-sm">刪除</button>
         </div>
       </td>
@@ -51,6 +51,7 @@ const products = ref([]);
 const pagination = ref({});
 const productModal = ref(null)
 const tempProduct = ref({});// 用於傳遞給子組件的臨時產品數據
+const isNew = ref(false);
 
 //取得產品列表
 const getProducts = async()=>{
@@ -67,18 +68,28 @@ const getProducts = async()=>{
 getProducts();
 
 // 開啟 Modal 時清空臨時產品數據
-const openProductModal = () => {
-  tempProduct.value = {};
+const openProductModal = ( newStatus, item ) => {
+  if (newStatus) {
+    tempProduct.value = {};
+  } else {
+    tempProduct.value = {...item};
+  }
+  // isNew.value = isNew;
   productModal.value.showModal()
 }
 
 // 接收子組件傳回的產品數據並更新
 const updateProduct = async(item) => {
   try {
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env. VITE_APP_PATH}/admin/product`;
-    const res = await axios.post(api, { data: item });// 直接使用子組件傳回的數據
-    productModal.value.hideModal()
+    let api = `${import.meta.env.VITE_APP_API}api/${import.meta.env. VITE_APP_PATH}/admin/product`;
+    let httpMethod = 'post';  // 預設新增用 POST
     
+    if(!isNew.value){
+      api = `${import.meta.env.VITE_APP_API}api/${import.meta.env. VITE_APP_PATH}/admin/product/${item.id}`;
+      httpMethod = 'put';
+    }
+    const res = await axios[httpMethod](api, { data: item });// 直接使用子組件傳回的數據
+
     // 如果成功，關閉 Modal 並重新獲取產品列表
     if(res.data.success) {
       productModal.value.hideModal();
