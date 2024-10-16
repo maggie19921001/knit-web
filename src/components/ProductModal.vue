@@ -1,23 +1,110 @@
 <template>
-  <div class="text-end">
-    <button class="btn btn-primary" type="button" @click="showModal">
-      增加一個產品
-    </button>
-  </div>
-    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content border-0">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <span>新增產品</span>
+        </h5>
+        <button type="button" class="btn-close"
+                data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="mb-3">
+              <label for="image" class="form-label">輸入圖片網址</label>
+              <input type="text" class="form-control" id="image"
+                      placeholder="請輸入圖片連結">
+            </div>
+            <div class="mb-3">
+              <label for="customFile" class="form-label">或 上傳圖片
+                <i class="fas fa-spinner fa-spin"></i>
+              </label>
+              <input type="file" id="customFile" class="form-control">
+            </div>
+            <img class="img-fluid" alt="">
+            <!-- 延伸技巧，多圖 -->
+            <div class="mt-5">
+              <div class="mb-3 input-group" >
+                <input type="url" class="form-control form-control"
+                        placeholder="請輸入連結">
+                <button type="button" class="btn btn-outline-danger">
+                  移除
+                </button>
+              </div>
+              <div>
+                <button class="btn btn-outline-primary btn-sm d-block w-100">
+                  新增圖片
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="mb-3">
+              <label for="title" class="form-label">標題</label>
+              <input type="text" class="form-control" id="title" v-model="tempProduct.title"
+                      placeholder="請輸入標題">
+            </div>
+
+            <div class="row gx-2">
+              <div class="mb-3 col-md-6">
+                <label for="category" class="form-label">分類</label>
+                <input type="text" class="form-control" id="category" v-model="tempProduct.category"
+                        placeholder="請輸入分類">
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="price" class="form-label">單位</label>
+                <input type="text" class="form-control" id="unit" v-model="tempProduct.unit"
+                        placeholder="請輸入單位">
+              </div>
+            </div>
+
+            <div class="row gx-2">
+              <div class="mb-3 col-md-6">
+                <label for="origin_price" class="form-label">原價</label>
+                <input type="number" class="form-control" id="origin_price" v-model="tempProduct.origin_price"
+                        placeholder="請輸入原價">
+              </div>
+              <div class="mb-3 col-md-6">
+                <label for="price" class="form-label">售價</label>
+                <input type="number" class="form-control" id="price" v-model="tempProduct.price"
+                        placeholder="請輸入售價">
+              </div>
+            </div>
+            <hr>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">產品描述</label>
+              <textarea type="text" class="form-control" id="description"
+                        placeholder="請輸入產品描述"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="content" class="form-label">說明內容</label>
+              <textarea type="text" class="form-control" id="content"
+                        placeholder="請輸入產品說明內容"></textarea>
+            </div>
+            <div class="mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox"
+                        :true-value="1"
+                        :false-value="0"
+                        id="is_enabled">
+                <label class="form-check-label" for="is_enabled">
+                  是否啟用
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-outline-secondary"
+                data-bs-dismiss="modal">取消
+        </button>
+        <button type="button"
+         class="btn btn-primary" 
+         @click="handleSubmit">確認</button>
       </div>
     </div>
   </div>
@@ -25,26 +112,60 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineProps, watch } from 'vue';
 import Modal from 'bootstrap/js/dist/modal';
 
+//BS Modal模組
+const modal = ref(null)
+let modalInstance = null
+const tempProduct = ref({});// 內部暫存的產品數據
 
-const modal = ref(null); // 用來存取 DOM 元素
-let modalInstance = null; // 保存 Modal 實例
+// 定義 props
+const props = defineProps({
+  product: {
+    type: Object,
+    default: () => ({})
+  }
+})
+
+// 定義 emit
+const emit = defineEmits(['update-product']);
+
+// 監聽父組件傳入的 product 變化
+watch(
+  () => props.product,
+  (newValue) => {
+    tempProduct.value = { ...newValue }; // 使用解構賦值來創建新的物件
+  },
+  { deep: true } // 深度監聽
+)
+
+// 處理提交
+const handleSubmit = () => {
+  emit('update-product', tempProduct.value);
+}
+
+// Modal 相關方法
+onMounted(() => {
+  modalInstance = new Modal(modal.value)
+})
 
 const showModal = () => {
   if (modalInstance) {
-    modalInstance.show();
+    modalInstance.show()
   }
-};
+}
 
 const hideModal = () => {
   if (modalInstance) {
-    modalInstance.hide();
+    modalInstance.hide()
   }
-};
+}
 
-onMounted(() => {
-  modalInstance = new Modal(modal.value); // 初始化 Modal
-});
+// 暴露方法供父组件调用
+defineExpose({
+  showModal,
+  hideModal,
+  tempProduct
+})
 </script>

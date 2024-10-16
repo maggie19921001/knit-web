@@ -1,4 +1,9 @@
 <template>
+  <div class="text-end">
+    <button class="btn btn-primary" type="button" @click="openProductModal">
+      增加一個產品
+    </button>
+  </div>
   <table class="table mt-4">
     <thead>
         <tr>
@@ -33,7 +38,8 @@
     </tr>
   </tbody>
 </table>
-<ProductModal />
+<ProductModal ref="productModal" v-bind:product="tempProduct" 
+@update-product="updateProduct"/>
 </template>
 
 <script setup>
@@ -43,7 +49,10 @@ import ProductModal from '../components/ProductModal.vue';
 
 const products = ref([]);
 const pagination = ref({});
+const productModal = ref(null)
+const tempProduct = ref({});// 用於傳遞給子組件的臨時產品數據
 
+//取得產品列表
 const getProducts = async()=>{
     try {
     const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/products`;
@@ -56,6 +65,30 @@ const getProducts = async()=>{
   }
 };
 getProducts();
+
+// 開啟 Modal 時清空臨時產品數據
+const openProductModal = () => {
+  tempProduct.value = {};
+  productModal.value.showModal()
+}
+
+// 接收子組件傳回的產品數據並更新
+const updateProduct = async(item) => {
+  try {
+    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env. VITE_APP_PATH}/admin/product`;
+    const res = await axios.post(api, { data: item });// 直接使用子組件傳回的數據
+    productModal.value.hideModal()
+    
+    // 如果成功，關閉 Modal 並重新獲取產品列表
+    if(res.data.success) {
+      productModal.value.hideModal();
+      getProducts();
+    }
+  } catch (error) {
+    console.error('Error during update product:', error);
+  }
+}
+
 </script>
 
 <style>
