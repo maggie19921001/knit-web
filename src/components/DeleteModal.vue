@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, defineProps, defineEmits, defineExpose } from 'vue';
+import { ref, onMounted } from 'vue';
 import Modal from 'bootstrap/js/dist/modal';
 
 const modal = ref(null);

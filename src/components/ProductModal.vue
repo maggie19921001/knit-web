@@ -113,7 +113,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted, defineProps, watch } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import Modal from 'bootstrap/js/dist/modal';
 
 //BS Modal模組
