@@ -1,4 +1,5 @@
 <template>
+  <Loading :active="isLoading" />
   <div class="text-end">
     <button class="btn btn-primary" type="button" @click="openProductModal(true)">
       增加一個產品
@@ -57,11 +58,15 @@ const delModal = ref(null);
 const tempProduct = ref({});// 用於傳遞給子組件的臨時產品數據
 const isNew = ref(false);
 
+const isLoading = ref(false);
+
 //取得產品列表
 const getProducts = async()=>{
     try {
+    isLoading.value = true;
     const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/products`;
     const res = await axios.get(api);
+    isLoading.value = false;
     products.value =res.data.products;
     pagination.value =res.data.pagination;
     

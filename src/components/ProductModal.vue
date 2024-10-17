@@ -23,7 +23,7 @@
               </label>
               <input type="file" id="customFile" class="form-control" ref="fileInput" @change="uploadFile">
             </div>
-            <img class="img-fluid" alt="">
+            <img class="img-fluid" alt="" :src="tempProduct.imageUrl">
             <!-- 延伸技巧，多圖 -->
             <div class="mt-5">
               <div class="mb-3 input-group" >
@@ -77,16 +77,18 @@
             <div class="mb-3">
               <label for="description" class="form-label">產品描述</label>
               <textarea type="text" class="form-control" id="description"
+              v-model="tempProduct.description"
                         placeholder="請輸入產品描述"></textarea>
             </div>
             <div class="mb-3">
               <label for="content" class="form-label">說明內容</label>
-              <textarea type="text" class="form-control" id="content"
+              <textarea type="text" class="form-control" id="content" v-model="tempProduct.content"
                         placeholder="請輸入產品說明內容"></textarea>
             </div>
             <div class="mb-3">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox"
+                        v-model="tempProduct.is_enabled"
                         :true-value="1"
                         :false-value="0"
                         id="is_enabled">
@@ -163,7 +165,7 @@ const hideModal = () => {
   }
 }
 
-
+//上傳圖片
 const fileInput = ref(null)
 const uploadFile = async() => {
 
