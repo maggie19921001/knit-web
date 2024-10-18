@@ -46,9 +46,11 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import ProductModal from '../components/ProductModal.vue';
 import DelModal from '../components/DeleteModal.vue';
+
+const emitter = inject('emitter')
 
 const products = ref([]);
 const pagination = ref({});
@@ -103,7 +105,17 @@ const updateProduct = async(item) => {
     if(res.data.success) {
       productModal.value.hideModal();
       getProducts();
-    }
+      emitter.emit('push-message',{
+        style: 'success',
+        title: '更新成功',
+      })
+    } else {
+          emitter.emit('push-message', {
+            style: 'danger',
+            title: '更新失敗',
+            content: res.data.message.join('、'),
+          });
+      }
   } catch (error) {
     console.error('Error during update product:', error);
   }

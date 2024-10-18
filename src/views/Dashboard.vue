@@ -1,16 +1,21 @@
 <template>
 <Navbar />
-<div class="container-fluid">
+<div class="container-fluid position-relative">
+    <ToastMessages />
     <RouterView />
 </div>
     
 </template>
 
 <script setup>
+import emitter from "@/methods/emitter";
+import ToastMessages from "@/components/ToastMessages.vue";
 import Navbar from "../components/Navbar.vue"
 import axios from "axios";
-import { ref } from "vue";
+import { ref, provide } from "vue";
 import { useRouter } from "vue-router";
+
+provide('emitter', emitter);
 
 const router = useRouter();
 
