@@ -39,6 +39,7 @@
     </tr>
   </tbody>
 </table>
+<Pagination :pages="pagination" @emit-pages="getProducts" />
 <ProductModal ref="productModal" v-bind:product="tempProduct" 
 @update-product="updateProduct"/>
 <DelModal :item="tempProduct" ref="delModal" @del-item="delProduct"/>
@@ -49,6 +50,7 @@ import axios from "axios";
 import { ref, inject } from "vue";
 import ProductModal from '../components/ProductModal.vue';
 import DelModal from '../components/DeleteModal.vue';
+import Pagination from '../components/Pagination.vue';
 
 const emitter = inject('emitter')
 
@@ -63,10 +65,10 @@ const isNew = ref(false);
 const isLoading = ref(false);
 
 //取得產品列表
-const getProducts = async()=>{
+const getProducts = async( page = 1 )=>{
     try {
     isLoading.value = true;
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/products`;
+    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/products/?page=${page}`;
     const res = await axios.get(api);
     isLoading.value = false;
     products.value =res.data.products;
