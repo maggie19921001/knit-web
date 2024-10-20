@@ -2,11 +2,16 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  //千分號
+  function currency(num) {
+    const n = parseInt(num, 10);
+    return `${n.toFixed(0).replace(/./g, (c, i, a) => (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c))}`;
   }
+  //時間轉換
+  function date(time) {
+    const localDate = new Date(time * 1000);
+    return localDate.toLocaleDateString();
+    }
 
-  return { count, doubleCount, increment }
+  return { currency, date }
 })

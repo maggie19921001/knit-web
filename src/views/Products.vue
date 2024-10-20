@@ -21,10 +21,10 @@
       <td>{{item.category}}</td>
       <td>{{item.title}}</td>
       <td class="text-right">
-        {{item.origin_price}}
+        {{ countStore.currency(item.origin_price) }}
       </td>
       <td class="text-right">
-        {{item.price}}
+        {{ countStore.currency(item.price) }}
       </td>
       <td>
         <span class="text-success" v-if="item.is_enabled">啟用</span>
@@ -51,6 +51,9 @@ import { ref, inject } from "vue";
 import ProductModal from '../components/ProductModal.vue';
 import DelModal from '../components/DeleteModal.vue';
 import Pagination from '../components/Pagination.vue';
+
+import { useCounterStore } from "@/stores/counter";
+const  countStore = useCounterStore();
 
 const emitter = inject('emitter')
 
