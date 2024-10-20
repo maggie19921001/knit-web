@@ -27,15 +27,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import Modal from 'bootstrap/js/dist/modal';
+import { ref } from 'vue';
+import { useModal } from '../methods/modal';
 
 const modal = ref(null);
-let modalInstance = null;
-
-onMounted(() => {
-  modalInstance = new Modal(modal.value);
-});
 
 const props = defineProps({
   item: {
@@ -46,17 +41,7 @@ const props = defineProps({
 
 const emit = defineEmits(['del-item']);
 
-const showModal = () => {
-  if (modalInstance) {
-    modalInstance.show();
-  }
-};
-
-const hideModal = () => {
-  if (modalInstance) {
-    modalInstance.hide();
-  }
-};
+const { showModal, hideModal } = useModal(modal); // 使用 modal.js 的方法
 
 const handleDelete = () => {
   emit('del-item');

@@ -1,11 +1,11 @@
 <template>
   <Loading :active="isLoading" />
-  <div class="text-end">
+  <div class="text-end mt-2">
     <button class="btn btn-primary" type="button" @click="openProductModal(true)">
       增加一個產品
     </button>
   </div>
-  <table class="table mt-4">
+  <table class="table mt-2">
     <thead>
         <tr>
         <th width="120">分類</th>
@@ -91,7 +91,7 @@ const openProductModal = ( newStatus, item ) => {
     tempProduct.value = {...item};
   }
   isNew.value = newStatus;
-  productModal.value.showModal()
+  productModal.value.showModal();
 }
 
 // 接收子組件傳回的產品數據並更新

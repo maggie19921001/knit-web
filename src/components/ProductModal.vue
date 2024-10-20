@@ -116,9 +116,8 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, watch } from 'vue';
-import Modal from 'bootstrap/js/dist/modal';
+import { useModal } from '../methods/modal';
 
-//BS Modal模組
 const modal = ref(null)
 let modalInstance = null
 const tempProduct = ref({});// 內部暫存的產品數據
@@ -148,22 +147,8 @@ const handleSubmit = () => {
   emit('update-product', tempProduct.value);
 }
 
-// Modal 相關方法
-onMounted(() => {
-  modalInstance = new Modal(modal.value)
-})
 
-const showModal = () => {
-  if (modalInstance) {
-    modalInstance.show()
-  }
-}
-
-const hideModal = () => {
-  if (modalInstance) {
-    modalInstance.hide()
-  }
-}
+const { showModal, hideModal } = useModal(modal);
 
 //上傳圖片
 const fileInput = ref(null)
