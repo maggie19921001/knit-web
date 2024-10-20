@@ -110,7 +110,7 @@ const updatePaid = async( item ) => {
   const res = await axios.put(api, { paid });
   console.log("is paid", res);
   getOrders(currentPageRef);
-  //未更新付款狀態
+  countStore.pushMessageState(res,'更新付款狀態')
 }
 
 const delOrder = async() =>{
