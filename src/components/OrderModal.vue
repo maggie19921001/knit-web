@@ -121,16 +121,25 @@ const props = defineProps({
     default: () => ({})
   }
 });
-
+const emit = defineEmits(['update-order']);
 const handleCheck = () => {
   emit('update-order', tempOrder.value);
 }
 const { showModal, hideModal } = useModal(modal); // 使用 modal.js 的方法
+
+// 監聽 order 的變化
+//getter函式，將prop.order包在函式內能正確監聽
 watch(
-  () => props.order,
+  () => props.order, 
   (newValue) => {
-    tempOrder.value = { ...newValue }; // 使用解構賦值來創建新的物件
+    tempOrder.value = { ...newValue }; 
   },
-  { deep: true } // 深度監聽
+  { deep: true } 
 )
+
+defineExpose({
+  showModal,
+  hideModal,
+  tempOrder
+})
 </script>

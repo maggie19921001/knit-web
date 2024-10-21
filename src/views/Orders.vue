@@ -58,7 +58,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, inject } from "vue";
+import { ref } from "vue";
 import DelModal from '../components/DeleteModal.vue';
 import OrderModal from '../components/OrderModal.vue';
 import Pagination from '../components/Pagination.vue';
