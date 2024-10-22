@@ -14,10 +14,9 @@ import Navbar from "../components/Navbar.vue"
 import axios from "axios";
 import { ref, provide } from "vue";
 import { useRouter } from "vue-router";
+const router = useRouter();
 
 provide('emitter', emitter);
-
-const router = useRouter();
 
 const token = ref(document.cookie.replace(/(?:(?:^|.*;\s*)loginToken\s*=\s*([^;]*).*$)|^.*$/, '$1'));
 axios.defaults.headers.common.Authorization = token.value;

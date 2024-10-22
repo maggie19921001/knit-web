@@ -24,9 +24,13 @@ const router = createRouter({
     },
     {
       path: '/dashboard',
-      name: 'dashboard',
       component: () => import('../views/Dashboard.vue'),
       children:[
+        {
+          path:'',
+          name: 'dashboard',
+          component: () => import('../views/Products.vue')
+        },
         {
           path:'products',
           component: () => import('../views/Products.vue')
@@ -37,6 +41,29 @@ const router = createRouter({
         },{
           path:'coupons',
           component: () => import('../views/Coupons.vue')
+        }
+      ]
+    },
+    {
+      path: '/user',
+      component: () => import('../views/Userboard.vue'),
+      children:[
+        {
+          path: '', // 這裡設置為空，代表當進入 /user 時顯示這個子路由
+          name: 'user',
+          component: () => import('../views/UserShop.vue'),
+        },
+        {
+          path:'shop',
+          component: () => import('../views/UserShop.vue')
+        },
+        {
+          path:'product/:productId',
+          component: () => import('../views/UserProduct.vue')
+        },
+        {
+          path:'checkout/:orderId',
+          component: () => import('../views/UserCheckout.vue')
         }
       ]
     }
