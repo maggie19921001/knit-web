@@ -3,7 +3,7 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><router-link to="/user/cart">購物車</router-link></li>
+          <li class="breadcrumb-item"><router-link to="/user/shop">Cart</router-link></li>
           <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
         </ol>
       </nav>
@@ -52,7 +52,7 @@ const getProduct = async() => {
         console.error('Error during get product:', error);
     }
 }
-getProduct();
+
 
 const addToCart = async(id, qty = 1) => {
     try{
@@ -66,7 +66,7 @@ const addToCart = async(id, qty = 1) => {
         isLoading.value = false;
         countStore.pushMessageState(res, '加入購物車');
         console.log(res);
-        // router.push('/user/cart');
+        router.push('/user/shop');
     }catch(error){
         console.error('Error during add to cart:', error);
     }

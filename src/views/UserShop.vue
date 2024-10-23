@@ -31,7 +31,12 @@
                     查看更多
                   </button>
                   <button type="button" class="btn btn-outline-danger"
-                          >
+                          @click="addCart(item.id)"
+                          :disabled="status.loadingItem === item.id">
+                      <div v-if="status.loadingItem === item.id"
+                      class="spinner-grow text-danger spinner-grow-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
                     加到購物車
                   </button>
                 </div>
@@ -53,9 +58,9 @@ const router = useRouter();
 
 const products = ref([]);
 const product = ref({});
-const status = {
+const status = ref({
         loadingItem: '',
-      };
+      });
 
 const isLoading = ref(false);
 
@@ -74,9 +79,25 @@ const getProducts = async() => {
 getProducts();
 
 //單一產品
-const getProduct = (id) =>{
+const getProduct = (id) => {
     router.push(`/user/product/${id}`);
 };
 
+//加入購物車
+const addCart = async(id) => {
+  try{
+    status.value.loadingItem = id;
+    const cart = {
+      product_id : id,
+      qty : 1
+    }
+    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/cart`;
+    const res = await axios.post(api, { data:cart });
+    status.value.loadingItem = '';
+    console.log(res);
+  }catch(error){
+    console.error('Error during add to cart:', error);
+  }
+}
 
 </script>
