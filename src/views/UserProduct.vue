@@ -1,4 +1,5 @@
 <template>
+    <!-- 商品詳細頁 -->
     <Loading :active="isLoading"></Loading>
     <div class="container">
       <nav aria-label="breadcrumb">

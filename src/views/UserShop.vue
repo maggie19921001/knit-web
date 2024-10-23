@@ -1,4 +1,5 @@
 <template>
+    <!-- 商店列表 -->
     <Loading :active="isLoading" />
     <div class="container">
       <div class="row mt-4">
