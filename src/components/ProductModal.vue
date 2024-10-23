@@ -153,7 +153,6 @@ const { showModal, hideModal } = useModal(modal);
 //上傳圖片
 const fileInput = ref(null)
 const uploadFile = async() => {
-
   try {
     const uploadedFile = fileInput.value.files[0];
 

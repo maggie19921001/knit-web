@@ -46,7 +46,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import DelModal from '../components/DeleteModal.vue';
 import CouponModal from '../components/CouponModal.vue'
 import { useCounterStore } from "@/stores/counter";
@@ -87,7 +87,6 @@ const getCoupons = async() => {
     console.error('Error during get coupons:', error);
   }
 };
-getCoupons();
 
 const updateCoupon = async( tempCoupon ) => {
   try{
@@ -121,4 +120,8 @@ const delCoupon = async() =>{
     console.error('Error during delete coupon:', error);
   }
 }
+
+onMounted(()=>{
+  getCoupons();
+})
 </script>
