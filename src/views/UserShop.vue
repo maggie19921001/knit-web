@@ -95,7 +95,7 @@ const addCart = async(id) => {
     const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/cart`;
     const res = await axios.post(api, { data:cart });
     status.value.loadingItem = '';
-    console.log(res);
+    // console.log(res);
   }catch(error){
     console.error('Error during add to cart:', error);
   }

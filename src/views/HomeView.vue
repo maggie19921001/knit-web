@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import HomeNavbar from '@/components/HomeNavbar.vue';
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+<HomeNavbar />
+
+<p>這是首頁</p>
 </template>

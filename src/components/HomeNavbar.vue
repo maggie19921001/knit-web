@@ -1,9 +1,9 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/user/shop">
           <img src="/images/K&S-logo-02.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-          Knit & Share shop</router-link>
+          Knit & Share</router-link>
           <button 
             class="navbar-toggler" 
             type="button" 
@@ -26,10 +26,7 @@
           <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/"><i class="bi bi-house-door-fill"></i></router-link>
-                </li>
-                <li class="nav-item">
-                  <router-link class="nav-link" to="/user/cart"><i class="bi bi-bag-fill"></i></router-link>
+                  <router-link class="nav-link" to="/user/shop"><i class="bi bi-shop"></i></router-link>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a>
@@ -39,25 +36,4 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid mt-3 position-relative">
-      <ToastMessages />
-      <RouterView />
-    </div>
 </template>
-
-<script setup>
-import { provide, onMounted } from "vue";
-import emitter from "@/methods/emitter";
-provide('emitter', emitter);
-
-import ToastMessages from "@/components/ToastMessages.vue";
-import bootstrap from "bootstrap/dist/js/bootstrap"
-
-onMounted(() => {
-      const offcanvasElement = document.getElementById('offcanvasNavbar');
-      const offcanvas = new bootstrap.Offcanvas(offcanvasElement, {
-        backdrop: true
-      });
-    });
-
-</script>
