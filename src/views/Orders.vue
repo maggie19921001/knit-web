@@ -15,7 +15,7 @@
       <template v-for="(item, key) in orders" :key="key">
         <tr v-if="orders.length"
             :class="{'text-secondary': !item.is_paid}">
-          <td>{{ $filters.date(item.create_at) }}</td>
+          <td>{{ countStore.date(item.create_at) }}</td>
           <td><span v-text="item.user.email" v-if="item.user"></span></td>
           <td>
             <ul class="list-unstyled">
@@ -58,7 +58,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import DelModal from '../components/DeleteModal.vue';
 import OrderModal from '../components/OrderModal.vue';
 import Pagination from '../components/Pagination.vue';
@@ -121,5 +121,9 @@ const delOrder = async() =>{
   delModal.value.hideModal();
   getOrders(currentPageRef);
 }
+
+onMounted(() => {
+  getOrders();
+});
 </script>
 
