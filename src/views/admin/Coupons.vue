@@ -47,8 +47,8 @@
 <script setup>
 import axios from "axios";
 import { onMounted, ref } from "vue";
-import DelModal from '../components/DeleteModal.vue';
-import CouponModal from '../components/CouponModal.vue'
+import DelModal from '../../components/function/DeleteModal.vue';
+import CouponModal from '../../components/function/CouponModal.vue'
 import { useCounterStore } from "@/stores/counter";
 const  countStore = useCounterStore();
 

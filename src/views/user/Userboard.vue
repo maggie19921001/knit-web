@@ -50,7 +50,7 @@ import { provide, onMounted } from "vue";
 import emitter from "@/methods/emitter";
 provide('emitter', emitter);
 
-import ToastMessages from "@/components/ToastMessages.vue";
+import ToastMessages from "@/components/function/ToastMessages.vue";
 import bootstrap from "bootstrap/dist/js/bootstrap"
 
 onMounted(() => {

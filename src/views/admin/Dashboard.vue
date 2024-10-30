@@ -9,8 +9,8 @@
 
 <script setup>
 import emitter from "@/methods/emitter";
-import ToastMessages from "@/components/ToastMessages.vue";
-import Navbar from "../components/Navbar.vue"
+import ToastMessages from "@/components/function/ToastMessages.vue";
+import Navbar from "../../components/block/Navbar.vue"
 import axios from "axios";
 import { ref, provide } from "vue";
 import { useRouter } from "vue-router";

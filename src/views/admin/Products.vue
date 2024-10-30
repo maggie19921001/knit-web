@@ -48,9 +48,9 @@
 <script setup>
 import axios from "axios";
 import { ref, inject } from "vue";
-import ProductModal from '../components/ProductModal.vue';
-import DelModal from '../components/DeleteModal.vue';
-import Pagination from '../components/Pagination.vue';
+import ProductModal from '../../components/function/ProductModal.vue';
+import DelModal from '../../components/function/DeleteModal.vue';
+import Pagination from '../../components/function/Pagination.vue';
 
 import { useCounterStore } from "@/stores/counter";
 const  countStore = useCounterStore();

@@ -116,7 +116,7 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted, watch } from 'vue';
-import { useModal } from '../methods/modal';
+import { useModal } from '../../methods/modal';
 
 const modal = ref(null)
 let modalInstance = null

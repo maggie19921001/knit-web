@@ -56,7 +56,7 @@
 import { ref, watch } from 'vue';
 import { useCounterStore } from "@/stores/counter";
 const  countStore = useCounterStore();
-import { useModal } from '../methods/modal';
+import { useModal } from '../../methods/modal';
 
 const modal = ref(null);
 const tempCoupon =ref({});

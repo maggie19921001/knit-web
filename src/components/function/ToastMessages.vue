@@ -8,7 +8,7 @@
 
 <script setup>
 import { ref, onMounted, inject } from 'vue'
-import Toast from '@/components/Toast.vue'
+import Toast from '@/components/function/Toast.vue'
 
 const messages = ref([])
 

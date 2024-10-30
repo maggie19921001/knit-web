@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useModal } from '../methods/modal';
+import { useModal } from '../../methods/modal';
 
 const modal = ref(null);
 
