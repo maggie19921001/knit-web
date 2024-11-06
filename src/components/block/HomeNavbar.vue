@@ -4,7 +4,7 @@
         <router-link class="navbar-brand" to="/user/shop">
           <div class="d-flex gap-1 align-items-center">
             <img src="/images/Knit &Soul_transparent-.png" alt="Logo" width="40" height="36" class="d-inline-block align-text-top">
-            <div class="libre-baskerville-bold fs-4 ">Knit & Soul</div>
+            <div class="libre-baskerville-bold fs-5 ">Knit & Soul</div>
           </div>
         </router-link>
           <button 
@@ -31,15 +31,15 @@
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3  gap-3">
                 <li class="nav-item">
                   <router-link class="nav-link" to="/user/shop">
-                    <i class="bi bi-shop" style="font-size: 1.5rem"></i>
+                    <i class="bi bi-shop" style="font-size: 1.3rem"></i>
                     <div class="nav-word d-lg-none">購買材料</div>
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="bi bi-person-circle" style="font-size: 1.5rem"></i>
+                  <router-link class="nav-link" to="/login">
+                    <i class="bi bi-person-circle" style="font-size: 1.3rem"></i>
                     <div class="nav-word d-lg-none">個人頁面</div>
-                  </a>
+                  </router-link>
                 </li>
               </ul>
           </div>

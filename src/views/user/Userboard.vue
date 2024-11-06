@@ -2,8 +2,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/user/shop">
-          <img src="/images/K&S-logo-02.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-          Knit & Share shop</router-link>
+          <div class="d-flex gap-1 align-items-center">
+            <img src="/images/Knit &Soul_transparent-.png" alt="Logo" width="40" height="36" class="d-inline-block align-text-top">
+            <div class="libre-baskerville-bold fs-5">Knit & Soul</div>
+          </div>
+        </router-link>
           <button 
             class="navbar-toggler" 
             type="button" 
@@ -24,15 +27,21 @@
             ></button>
           </div>
           <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/"><i class="bi bi-house-door-fill"></i></router-link>
+                  <router-link class="nav-link" to="/">
+                    <i class="bi bi-house-door-fill" style="font-size: 1.3rem"></i>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/user/cart"><i class="bi bi-bag-fill"></i></router-link>
+                  <router-link class="nav-link" to="/user/cart">
+                    <i class="bi bi-bag-fill" style="font-size: 1.3rem"></i>
+                  </router-link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a>
+                  <a class="nav-link" href="#">
+                    <i class="bi bi-person-circle" style="font-size: 1.3rem"></i>
+                  </a>
                 </li>
               </ul>
           </div>
