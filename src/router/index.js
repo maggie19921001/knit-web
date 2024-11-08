@@ -65,6 +65,10 @@ const router = createRouter({
           component: () => import('../views/user/UserProduct.vue')
         },
         {
+          path:'userform',
+          component: () => import('../views/user/UserForm.vue')
+        },
+        {
           path:'checkout/:orderId',
           component: () => import('../views/user/UserCheckout.vue')
         }

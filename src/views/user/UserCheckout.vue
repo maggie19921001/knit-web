@@ -3,10 +3,12 @@
     <form class="col-md-6" @submit.prevent="payOrder">
       <table class="table align-middle">
         <thead>
-        <th>品名</th>
-        <th>數量</th>
-        <th>原價</th>
-        <th>優惠價</th>
+          <tr>
+            <th>品名</th>
+            <th>數量</th>
+            <th>原價</th>
+            <th>優惠價</th>
+          </tr>
         </thead>
         <tbody>
         <tr v-for="item in order.products" :key="item.id">
@@ -50,9 +52,28 @@
       </tr>
       </tbody>
     </table>
-    <div class="text-end" v-if="order.is_paid === false">
-      <button class="btn btn-danger">確認付款去</button>
-    </div>
+      <div class="text-end" v-if="order.is_paid === false">
+        <p class="mt-4 mb-2">付款方式</p>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+          <label class="form-check-label text-muted" for="gridRadios1">WebATM
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+          <label class="form-check-label text-muted" for="gridRadios2">ATM
+          </label>
+        </div>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+          <label class="form-check-label text-muted" for="gridRadios3">ApplePay
+          </label>
+        </div>
+        <button class="btn btn-dark py-3 px-7 rounded-0">確認付款去</button>
+      </div>
+      <div class="text-end" v-else-if="order.is_paid === true">
+        <button class="btn btn-dark py-3 px-7 rounded-0 disabled">付款完成</button>
+      </div>
   </form>
 </div>
 </template>
