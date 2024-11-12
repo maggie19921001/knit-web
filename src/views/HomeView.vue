@@ -12,7 +12,9 @@ import AllFooter from '@/components/AllFooter.vue';
     <div class="noto-serif-tc-regular fs-1 ">編織溫暖時光，連結每顆真摯的心</div>
     <div class="dancing-script-regular fs-2">Crafting Time, Weaving Souls.</div>
     </div>
-    <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 col-md-4 offset-md-4">開始探索</button>
+    <router-link class="nav-link" to="/user/shop">
+       <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 col-md-4 offset-md-4">開始探索</button>
+    </router-link>
   </div>
 </section>
 <!-- 簡介 -->
@@ -313,6 +315,51 @@ import AllFooter from '@/components/AllFooter.vue';
     </div>
   </div>
 </section>
+<!-- 分享 -->
+<section class="comment">
+  <div class="container text-center mb-5 pb-5">
+    <div class="pic-group position-relative">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-6.png?raw=true" alt="" class="pic-1">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-4.png?raw=true" alt="" class="pic-2">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-7.png?raw=true" alt="" class="pic-3">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-1.png?raw=true" alt="" class="pic-4">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-8.png?raw=true" alt="" class="pic-5">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-3.png?raw=true" alt="" class="pic-6">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-2.png?raw=true" alt="" class="pic-7">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-9.png?raw=true" alt="" class="pic-8">
+      <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1-5.png?raw=true" alt="" class="pic-9">
+    </div>
+    <!--主圖-->
+    <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_talk/Layer_1.png?raw=true" alt="" class="mb-5 main-pic">
+    <div class="fs-1">
+      <p class="fw-bold mb-0">集合所有編織所需</p>
+      <p class="fw-bold mb-5">共創編織最大交流平台</p>
+    </div>
+    <router-link class="nav-link" to="/user/shop">
+        <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 col-md-4">開始探索</button>
+    </router-link>
+  </div>
+</section>
+<section class="comment-card">
+  <div class="card" style="width: 23rem;">
+    <div class="card-body">
+      <div class="card-top d-flex justify-content-start gap-2">
+        <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_head.png?raw=true" alt="" class="align-self-start">
+        <div class="comment-name mt-3">
+          <h5 class="card-title">Eric Chen</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </h6>
+          <p class="card-text">作為完全的初學者，我在這裡找到了非常詳細的教學影片，還有齊全的材料購買推薦。我完成了自己的作品，真的太感謝這個網站了！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <AllFooter />
 </template>
@@ -451,6 +498,126 @@ import AllFooter from '@/components/AllFooter.vue';
   font-size: 1.1rem;
 }
 
+.main-pic{
+  width: 15%;
+}
 
+.pic-group {
+  position: relative;
+  width: 100%;
+  height: 10rem;
+  margin: 4rem 0;
+}
+
+/* 設置每張圖片的基本樣式 */
+.pic-group img {
+  position: absolute;
+  object-fit: contain;
+  animation: float 3s ease-in-out infinite;
+
+}
+
+/* 為每張圖片設置精確位置 */
+.pic-group img:nth-child(1) {
+  top: 80%;
+  left: 35%;
+  animation-delay: 0s;
+}
+
+.pic-group img:nth-child(2) {
+  top: 50%;
+  right: 25%;
+  animation-delay: 0.2s;
+}
+
+.pic-group img:nth-child(3) {
+  bottom: -120%;
+  left: 20%;
+  animation-delay: 0.4s;
+}
+
+.pic-group img:nth-child(4) {
+  bottom: -100%;
+  left: 28%;
+  animation-delay: 0.6s;
+}
+
+.pic-group img:nth-child(5) {
+  bottom: -20%;
+  right: 20%;
+  animation-delay: 0.8s;
+}
+
+.pic-group img:nth-child(6) {
+  bottom: -40%;
+  left: 20%;
+  animation-delay: 1s;
+}
+
+.pic-group img:nth-child(7) {
+  top: 90%;
+  right: 35%;
+  animation-delay: 1.2s;
+}
+
+.pic-group img:nth-child(8) {
+  top: 50%;
+  left: 55%;
+  animation-delay: 1.4s;
+}
+
+.pic-group img:nth-child(9) {
+  bottom: -100%;
+  left: 65%;
+  animation-delay: 1.6s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* 主圖樣式 */
+.comment > .container > img:first-child {
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+/* 按鈕樣式 */
+.comment .btn-primary {
+  padding: 0.8rem 2rem;
+  font-size: 1.25rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.comment .btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* RWD 調整 */
+@media (max-width: 768px) {
+  .main-pic{
+  width: 25%;
+}
+
+  /* 在手機版調整圖片位置 */
+  .pic-group img:nth-child(1) { left: 33%;    width: 8%;}
+  .pic-group img:nth-child(2) { left: 70%;    width: 8%;   display: none;}
+  .pic-group img:nth-child(3) { left: 27%;    width: 6%;}
+  .pic-group img:nth-child(4) { left: 13%;    width: 13%;}
+  .pic-group img:nth-child(5) { left: 85%;    width: 6%;}
+  .pic-group img:nth-child(6) { left: 5%;     width: 9%;}
+  .pic-group img:nth-child(7) { left: 60%;    width: 13%;}
+  .pic-group img:nth-child(8) { left: 55%;    width: 5%;  display: none;}
+  .pic-group img:nth-child(9) { left: 75%;    width: 10%;}
+}
 
 </style>

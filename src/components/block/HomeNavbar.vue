@@ -1,12 +1,12 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid px-5">
-        <router-link class="navbar-brand" to="/user/shop">
+        <a href="#" class="text-white text-decoration-none">
           <div class="d-flex gap-1 align-items-center">
             <img src="/images/Knit &Soul_transparent-.png" alt="Logo" width="40" height="36" class="d-inline-block align-text-top">
             <div class="libre-baskerville-bold fs-5 ">Knit & Soul</div>
           </div>
-        </router-link>
+        </a>
           <button 
             class="navbar-toggler" 
             type="button" 

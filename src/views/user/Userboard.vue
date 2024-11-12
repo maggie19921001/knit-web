@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <router-link class="navbar-brand" to="/user/shop">
+        <router-link class="navbar-brand" to="/">
           <div class="d-flex gap-1 align-items-center">
             <img src="/images/Knit &Soul_transparent-.png" alt="Logo" width="40" height="36" class="d-inline-block align-text-top">
             <div class="libre-baskerville-bold fs-5">Knit & Soul</div>
@@ -52,9 +52,11 @@
       <ToastMessages />
       <RouterView />
     </div>
+    <AllFooter />
 </template>
 
 <script setup>
+import AllFooter from '@/components/AllFooter.vue';
 import { provide, onMounted } from "vue";
 import emitter from "@/methods/emitter";
 provide('emitter', emitter);
