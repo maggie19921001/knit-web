@@ -1,23 +1,90 @@
 <template>
     <footer>
-        <div class="bg-dark py-5">
-        <div class="container">
-            <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-            <a class="text-white h4" href="./index.html">LOGO</a>
-            <ul class="d-flex list-unstyled mb-0 h4">
-                <li><a href="#" class="text-white mx-3"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#" class="text-white mx-3"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#" class="text-white ms-3"><i class="fab fa-line"></i></a></li>
-            </ul>
+        <div class="bg-dark pt-5 pb-3">
+            <div class="container">
+                <div class="d-flex justify-content-around text-white mb-md-7 mb-4">
+                    <!--連結Icon-->
+                    <ul class="d-flex list-unstyled mb-0 h4">
+                        <li><a href="#" class="text-white mx-3">
+                            <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/icon_fb.png?raw=true" alt="Facebook link" width="50" height="50">
+                        </a></li>
+                        <li><a href="#" class="text-white mx-3">
+                            <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/icon_instagram.png?raw=true" alt="Instagram link" width="50" height="50">
+                        </a></li>
+                        <li><a href="#" class="text-white ms-3">
+                            <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/icon_youtube.png?raw=true" alt="YouTube link" width="50" height="50">
+                        </a></li>
+                    </ul>
+
+                    <div class="d-flex gap-5">
+                        <!--品牌列-->
+                        <div>
+                            <ul class="list">
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none fw-bold fs-5">Knit & Soul</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">About</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">Partnerships</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--社群列-->
+                        <div class="d-flex flex-column text-white">
+                            <ul class="list">
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none fw-bold fs-5">Community</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">News</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">Events</a>
+                                </li>
+                                <li>
+                                    <a href="/index.html" class="text-white text-decoration-none">Articles</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--app列-->
+                        <div class="text-white">
+                            <ul class="list">
+                            <li>
+                                <a href="/index.html" class="text-white text-decoration-none fw-bold fs-5">Mobile</a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="/index.html">
+                                    <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/app_google.png?raw=true" alt="Andriod APP">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/index.html">
+                                    <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/app_apple.png?raw=true" alt="IOS APP">
+                                </a>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <p class="text-white text-center">copyright© 2024 yuhuei All Rights Reserved  |  Privacy  |  Term</p>
             </div>
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end align-items-start text-white">
-            <div class="mb-md-0 mb-1">
-                <p class="mb-0">02-3456-7890</p>
-                <p class="mb-0">service@mail.com</p>
-            </div>
-            <p class="mb-0">© 2020 LOGO All Rights Reserved.</p>
-            </div>
-        </div>
         </div>
     </footer>
 </template>
+
+<style scope>
+ul {
+
+list-style: none;
+
+}
+</style>
