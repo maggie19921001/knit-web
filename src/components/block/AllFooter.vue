@@ -2,9 +2,9 @@
     <footer>
         <div class="bg-dark pt-5 pb-3">
             <div class="container">
-                <div class="d-flex justify-content-around text-white mb-md-7 mb-4">
+                <div class="d-lg-flex d-md-flex-row justify-content-around text-white mb-md-5 mb-4  mx-auto">
                     <!--連結Icon-->
-                    <ul class="d-flex list-unstyled mb-0 h4">
+                    <ul class="d-flex list-unstyled h4 mb-5">
                         <li><a href="#" class="text-white mx-3">
                             <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/icon_fb.png?raw=true" alt="Facebook link" width="50" height="50">
                         </a></li>
@@ -16,7 +16,7 @@
                         </a></li>
                     </ul>
 
-                    <div class="d-flex gap-5">
+                    <div class="d-lg-flex gap-5 mx-auto">
                         <!--品牌列-->
                         <div>
                             <ul class="list">
@@ -58,7 +58,7 @@
                         <div class="text-white">
                             <ul class="list">
                             <li>
-                                <a href="/index.html" class="text-white text-decoration-none fw-bold fs-5">Mobile</a>
+                                <a href="/index.html" class="text-white text-decoration-none fw-bold fs-5 mb-5">Mobile</a>
                             </li>
                             <li class="mb-2">
                                 <a href="/index.html">
@@ -75,16 +75,16 @@
                     </div>
 
                 </div>
-                <p class="text-white text-center">copyright© 2024 yuhuei All Rights Reserved  |  Privacy  |  Term</p>
+                <p class="text-white text-center">copyright© 2024 YuHuei All Rights Reserved  |  Privacy  |  Term</p>
             </div>
         </div>
     </footer>
 </template>
 
-<style scope>
+<style scoped>
 ul {
-
-list-style: none;
-
+list-style: none
 }
+/* RWD 調整 */
+
 </style>

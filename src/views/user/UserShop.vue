@@ -1,6 +1,6 @@
 <template>
     <!-- 產品分類 Tab -->
-    <div class="d-flex gap-3 justify-content-center " role="group" aria-label="Basic radio toggle button group">
+    <div class="d-flex gap-3 justify-content-center my-5" role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check " name="btnradio" id="btnradio1" autocomplete="off" checked>
       <label class="btn btn-outline-primary px-4" for="btnradio1"
       @click="changeTab('全部')" :class="{'active': tabID=='全部'}">全部</label>
@@ -26,9 +26,11 @@
     <!-- 產品列表 -->
     <div class="container mx-auto">
       <div class="row mt-4">
-        <div class="col-md-3" v-for="item in filterProducts" :key="item.id">
+        <div class="col-md-4 col-sm-6" 
+        v-for="item in paginatedProducts" 
+        :key="item.id">
           <div class="card border-0 mb-4 position-relative">
-            <img :src="item.imageUrl" alt="產品圖片" style="width: 100%; height: 200px; object-fit: cover; 
+            <img :src="item.imageUrl" alt="產品圖片" style="width: 100%; height: 300px; object-fit: cover; 
             cursor: pointer;" 
             class="card-img-top rounded-2"
             @click="getProduct(item.id)">
@@ -45,7 +47,7 @@
                       @click="addCart(item.id)"
                       :disabled="status.loadingItem === item.id">
                   <div v-if="status.loadingItem === item.id"
-                  class="spinner-grow text-primary spinner-grow-sm" role="status">
+                  class="spinner-border text-primary spinner-border-sm text-light" role="status">
                   <span class="visually-hidden">Loading...</span>
                 </div>
                 加到購物車
@@ -55,11 +57,51 @@
         </div>
       </div>
     </div>
+        <!-- 新增分頁導航 -->
+    <div v-if="filterProducts.length > 0" class="d-flex justify-content-center mt-4">
+      <nav aria-label="Product pagination">
+        <ul class="pagination">
+          <li class="page-item" :class="{ disabled: currentPage === 1 }">
+            <button 
+              class="btn page-link rounded-0 rounded-start-2" 
+              @click="changePage(currentPage - 1)" 
+              :disabled="currentPage === 1"
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+          
+          <li 
+            v-for="page in totalPages" 
+            :key="page" 
+            class="page-item"
+            :class="{ active: page === currentPage }"
+          >
+            <button class="btn page-link rounded-0" @click="changePage(page)">
+              {{ page }}
+            </button>
+          </li>
+          
+          <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+            <button 
+              class="btn page-link rounded-0 rounded-end-2" 
+              @click="changePage(currentPage + 1)" 
+              :disabled="currentPage === totalPages"
+            >
+            <span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div v-if="filterProducts.length === 0" class="text-center mt-5">
+    <p class="text-muted">該分類下目前沒有產品。</p>
+</div>
   </template>
 
 <script setup>
 import axios from "axios";
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -115,7 +157,9 @@ const changeTab = ((id)=>{
 
 //監控所有待辦狀態變化，並依照分類顯示
 const filterProducts = computed(()=>{
-  if(tabID.value ==='工具'){
+  if (tabID.value === '全部') {
+    return products.value;
+  }else if(tabID.value ==='工具'){
     return products.value.filter((product)=> /工具/.test(product.category) );
   }else if(tabID.value ==='毛線'){
     return products.value.filter((product)=> /毛線/.test(product.category));
@@ -128,4 +172,53 @@ const filterProducts = computed(()=>{
   }
 })
 
+// 新增分頁相關的響應式資料
+const currentPage = ref(1);
+const itemsPerPage = ref(9);
+
+// 計算分頁後的產品
+const paginatedProducts = computed(() => {
+  const startIndex = (currentPage.value - 1) * itemsPerPage.value;
+  const endIndex = startIndex + itemsPerPage.value;
+  return filterProducts.value.slice(startIndex, endIndex);
+});
+
+// 計算總頁數
+const totalPages = computed(() => {
+  return Math.ceil(filterProducts.value.length / itemsPerPage.value);
+});
+
+// 切換頁面的方法
+const changePage = (page) => {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
+    // 可選：滾動到頁面頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
+
+// 監聽分類變化，重置頁碼
+watch(tabID, () => {
+  currentPage.value = 1;
+});
 </script>
+
+
+<style scoped>
+.page-item.active .page-link {
+  background-color: #3F6B96;
+  border-color: #3F6B96;
+  color: white;
+}
+
+.page-link:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.page-item.disabled .page-link {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+</style>

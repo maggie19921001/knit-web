@@ -32,13 +32,13 @@
                 <li class="nav-item">
                   <router-link class="nav-link" to="/user/shop">
                     <i class="bi bi-shop" style="font-size: 1.3rem"></i>
-                    <div class="nav-word d-lg-none">購買材料</div>
+                    <span class="nav-word d-lg-none p-3">購買材料</span>
                   </router-link>
                 </li>
                 <li class="nav-item">
                   <router-link class="nav-link" to="/login">
                     <i class="bi bi-person-circle" style="font-size: 1.3rem"></i>
-                    <div class="nav-word d-lg-none">個人頁面</div>
+                    <span class="nav-word d-lg-none p-3">個人頁面</span>
                   </router-link>
                 </li>
               </ul>

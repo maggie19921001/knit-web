@@ -1,6 +1,7 @@
 <script setup>
 import HomeNavbar from '@/components/block/HomeNavbar.vue';
-import AllFooter from '@/components/AllFooter.vue';
+import CommentSwiper from '@/components/block/CommentSwiper.vue';
+import AllFooter from '@/components/block/AllFooter.vue';
 </script>
 
 <template>
@@ -12,14 +13,16 @@ import AllFooter from '@/components/AllFooter.vue';
     <div class="noto-serif-tc-regular fs-1 ">編織溫暖時光，連結每顆真摯的心</div>
     <div class="dancing-script-regular fs-2">Crafting Time, Weaving Souls.</div>
     </div>
-    <router-link class="nav-link" to="/user/shop">
-       <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 col-md-4 offset-md-4">開始探索</button>
-    </router-link>
+    <div class="d-flex justify-content-center">
+      <router-link class="nav-link" to="/user/shop">
+        <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 px-5">開始探索</button>
+      </router-link>
+    </div>
   </div>
 </section>
 <!-- 簡介 -->
 <section class="intro position-relative">
-  <div class="container mx-5 p-5">
+  <div class="container mx-auto p-5">
     <div class="row justify-content-center align-items-center gap-5">
       <div class="col-md-4">
         <img src="https://github.com/maggie19921001/knit-web/blob/main/images/home_intro_1.png?raw=true" alt="" class="img-fluid">
@@ -335,30 +338,15 @@ import AllFooter from '@/components/AllFooter.vue';
       <p class="fw-bold mb-0">集合所有編織所需</p>
       <p class="fw-bold mb-5">共創編織最大交流平台</p>
     </div>
-    <router-link class="nav-link" to="/user/shop">
-        <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 col-md-4">開始探索</button>
-    </router-link>
-  </div>
-</section>
-<section class="comment-card">
-  <div class="card" style="width: 23rem;">
-    <div class="card-body">
-      <div class="card-top d-flex justify-content-start gap-2">
-        <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/comment_head.png?raw=true" alt="" class="align-self-start">
-        <div class="comment-name mt-3">
-          <h5 class="card-title">Eric Chen</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-          </h6>
-          <p class="card-text">作為完全的初學者，我在這裡找到了非常詳細的教學影片，還有齊全的材料購買推薦。我完成了自己的作品，真的太感謝這個網站了！</p>
-        </div>
-      </div>
+    <div class="d-flex justify-content-center">
+      <router-link class="nav-link" to="/user/shop">
+          <button type="button" class="btn btn-primary rounded-3 dm-sans-regular fs-4 px-5 " style="width: 500px;">開始探索</button>
+      </router-link>
     </div>
   </div>
+</section>
+<section class="comment-card mb-5">
+  <CommentSwiper />
 </section>
 
 <AllFooter />
@@ -370,6 +358,7 @@ import AllFooter from '@/components/AllFooter.vue';
     background-position: center center; 
     background-repeat: no-repeat;
     object-fit: fill;
+    background-size: cover;
 }
 .home-title{
   text-shadow: rgb(56, 56, 56) 0.2em 0.2em 0.2em;
@@ -425,7 +414,7 @@ import AllFooter from '@/components/AllFooter.vue';
 }
 
 .create {
-  background-color: #B9C0C7; /* 或其他你想要的背景色 */
+  background-color: #B9C0C7; 
 }
 
 .card-1 {

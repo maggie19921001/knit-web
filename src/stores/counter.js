@@ -32,5 +32,9 @@ export const useCounterStore = defineStore('counter', () => {
     }
   }
 
-  return { currency, date, pushMessageState}
+  return { 
+    currency, 
+    date, 
+    pushMessageState,
+  }
 })

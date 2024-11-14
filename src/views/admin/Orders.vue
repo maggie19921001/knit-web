@@ -71,7 +71,7 @@ const pagination = ref({});
 const isLoading = ref(false);
 const tempOrder = ref({});
 const currentPageRef = ref(1);
-const orderModel = ref(null);
+const orderModal = ref(null);
 const delModal = ref(null);
 
 //取得訂單列表
@@ -93,12 +93,12 @@ const getOrders = async(currentPage = 1) => {
 const openModal = ( newStatus, item ) => {
   tempOrder.value = {...item};
   isNew.value = newStatus;
-  orderModel.value.showModal();
+  orderModal.value.showModal();
 }
 
 const openDelOrderModal = ( item ) => {
   tempOrder.value = {...item};
-  orderModel.value.showModal();
+  delModal.value.showModal();
 }
 
 const updatePaid = async( item ) => {
@@ -115,11 +115,19 @@ const updatePaid = async( item ) => {
 
 const delOrder = async() =>{
   isLoading.value = true;
-  const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/order/${item.id}`;
-  const res = await axios.delete(api);
-  console.log("delOrder",res);
-  delModal.value.hideModal();
-  getOrders(currentPageRef);
+  const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/admin/order/${tempOrder.value.id}`;
+  try{
+    const res = await axios.delete(api);
+    console.log("delOrder",res);
+    delModal.value.hideModal();
+    getOrders(currentPageRef.value);
+    countStore.pushMessageState(res, '刪除訂單成功');
+  } catch (error) {
+    console.error('Error deleting order:', error);
+    countStore.pushMessageState(error.response, '刪除訂單失敗');
+  } finally {
+    isLoading.value = false;
+  }
 }
 
 onMounted(() => {

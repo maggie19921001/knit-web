@@ -56,11 +56,16 @@ configure({
 // 設定預設語系
 setLocale('zh_TW');
 
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css'
+import 'animate.css';
+
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(VueAxios, axios)
+app.use(createPinia());
+app.use(router);
+app.use(VueAxios, axios);
+app.use(VueSweetalert2);
 
 // 全域註冊元件
 app.component('Loading', Loading);

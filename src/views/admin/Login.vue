@@ -36,7 +36,12 @@ const signIn = async () => {
       <form class="row justify-content-center"
         @submit.prevent="signIn">
         <div class="col-md-6">
-          <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
+          <a class="navbar-brand" href="#">Knit & Share 回首頁</a>
+          <h1 class="h3 mb-3 mt-4 font-weight-normal">請先登入</h1>
+          <p>此頁為後台登入頁，使用測試資料登入即可查看後台（僅供檢視）</p>
+          <p>測試用帳號：maggie19921001@gmail.com
+            <br>
+            測試用PW：Linapiyu1001</p>
           <div class="mb-2">
             <label for="inputEmail" class="sr-only">Email address</label>
             <input
