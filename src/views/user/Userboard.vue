@@ -83,9 +83,9 @@ const couponAlert = () => {
   Swal.fire({
   title: "【暖暖優惠碼：KS50】",
   text: "恭喜您獲得冬季快閃！全站5折優惠券",
-  imageUrl: "https://img.freepik.com/free-vector/flat-winter-sale-horizontal-banner-template_23-2149830822.jpg?t=st=1731553554~exp=1731557154~hmac=c79ea4f7db541a4e0af7750abd51ef2297dea205e66e731f58821addf9f93449&w=1800",
-  imageWidth: 500,
-  imageHeight: 300,
+  imageUrl: "https://github.com/maggie19921001/knit-web/blob/main/images/winter_coupon.png?raw=true",
+  imageWidth: 530,
+  imageHeight: 250,
   imageAlt: "折價券",
   width: 600,
   padding: "1em",
