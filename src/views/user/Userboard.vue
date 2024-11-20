@@ -41,13 +41,15 @@
                   </router-link>
                 </li>
                 <li class="nav-item position-relative">
-                  <!-- <span class="position-absolute top-0 start-0 translate-middle badge round-pill bg-danger border border-light">66</span> -->
                   <router-link class="nav-link" to="/user/cart">
                     <i class="bi bi-bag-fill " style="font-size: 1.3rem"></i>
+                   <div v-if="cartStore.cartTotal>0">
+                    <span class="position-absolute top-0 start-50  badge rounded-pill bg-danger border border-light d-lg-block d-md-none d-sm-none  "> {{ cartStore.cartTotal }}</span>
                     
-                    <span class="position-absolute top-0 start-50  badge rounded-pill bg-danger border border-light d-sm-none d-md-none d-lg-block">88</span><!-- translate-middle -->
                     <span class="nav-word d-lg-none p-3">購物車</span>
-                    <span class="badge rounded-pill bg-danger border border-light d-lg-none">65</span>
+                    
+                    <span class="badge rounded-pill bg-danger border border-light d-lg-none"> {{ cartStore.cartTotal }}</span>
+                  </div>
                   </router-link>
                 </li>
                 <li class="nav-item">
@@ -73,6 +75,9 @@ import AllFooter from '@/components/block/AllFooter.vue';
 import { provide, onMounted, inject } from "vue";
 import emitter from "@/methods/emitter";
 provide('emitter', emitter);
+
+import { useCartStore } from '@/stores/cartStore';
+const cartStore = useCartStore();
 
 import ToastMessages from "@/components/function/ToastMessages.vue";
 import bootstrap from "bootstrap/dist/js/bootstrap"
@@ -106,6 +111,7 @@ onMounted(() => {
         backdrop: true
       });
       couponAlert();
+      cartStore.getCart();
     });
 
 </script>
