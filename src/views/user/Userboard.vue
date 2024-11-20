@@ -44,7 +44,7 @@
                   <router-link class="nav-link" to="/user/cart">
                     <i class="bi bi-bag-fill " style="font-size: 1.3rem"></i>
                    <div v-if="cartStore.cartTotal>0">
-                    <span class="position-absolute top-0 start-50  badge rounded-pill bg-danger border border-light d-lg-block d-md-none d-sm-none  "> {{ cartStore.cartTotal }}</span>
+                    <span class="position-absolute top-0 start-50  badge rounded-pill bg-danger border border-light d-lg-block d-none"> {{ cartStore.cartTotal }}</span>
                     
                     <span class="nav-word d-lg-none p-3">購物車</span>
                     

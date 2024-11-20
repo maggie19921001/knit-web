@@ -32,7 +32,6 @@ export const useCartStore = defineStore('cartStore', () => {
             const res = await axios.get(api);
             isLoading.value = false;
             cart.value = res.data.data;
-            console.log(cart.value);
         }catch(error){
             console.error('Error during get cart:', error);
         }

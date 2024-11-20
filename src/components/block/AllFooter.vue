@@ -15,7 +15,6 @@
                             <img src="https://github.com/maggie19921001/knit-web/blob/main/images/element/icon_youtube.png?raw=true" alt="YouTube link" width="50" height="50">
                         </a></li>
                     </ul>
-
                     <div class="d-lg-flex gap-5 mx-auto">
                         <!--品牌列-->
                         <div>
@@ -73,7 +72,6 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
                 <p class="text-white text-center">copyright© 2024 YuHuei All Rights Reserved  |  Privacy  |  Term</p>
             </div>
@@ -85,6 +83,5 @@
 ul {
 list-style: none
 }
-/* RWD 調整 */
 
 </style>

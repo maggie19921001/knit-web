@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { versionControl } from '../services/versionControl'
+import HomeView from '../views/HomeView.vue'
+import Login from '../views/admin/Login.vue'
+import Dashboard from '../views/admin/Dashboard.vue'
 
 
 const router = createRouter({
@@ -8,16 +10,16 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      component: HomeView,
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/admin/Login.vue')
+      component: Login
     },
     {
       path: '/dashboard',
-      component: () => import('../views/admin/Dashboard.vue'),
+      component: Dashboard,
       children:[
         {
           path:'',
@@ -69,12 +71,6 @@ const router = createRouter({
       ]
     }
   ]
-})
-
-router.onError((error) => {
-  if (error.message.includes('Failed to fetch dynamically imported module')) {
-    versionControl.reloadApp()
-  }
 })
 
 export default router
