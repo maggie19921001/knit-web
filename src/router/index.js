@@ -1,4 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { versionControl } from '../services/versionControl'
+
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -67,6 +69,12 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.onError((error) => {
+  if (error.message.includes('Failed to fetch dynamically imported module')) {
+    versionControl.reloadApp()
+  }
 })
 
 export default router

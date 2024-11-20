@@ -1,9 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import UpdateNotification from './components/UpdateNotification.vue'
 </script>
 
 <template>
   <RouterView />
+  <UpdateNotification :auto-update="false" />
 </template>
 
 <style lang="scss">
