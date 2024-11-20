@@ -3,7 +3,7 @@
         
         <div class="container">
             
-            <div class="row justify-content-center flex-md-row flex-column-reverse">
+            <div class="row justify-content-center flex-md-row flex-column">
                 <!--左訂單資訊-->
                 <div class="col-md-4">
                     <router-link  to="/user/cart" class="text-dark mb-3">
@@ -19,15 +19,21 @@
                         <p class="mb-0">x{{ item.qty }}</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                        <p class="text-muted mb-0"><small>原價${{ item.product.price }}</small></p>
-                        <p class="mb-0">${{ item.total }}</p>
+
+                        <div v-if="item.product.price===item.final_total">
+                            <p class="text-muted mb-0"><small>原價${{ item.product.price }}</small></p>
+                        </div>
+                        <div v-else>
+                            <p class="text-muted mb-0"><small>優惠價${{ item.final_total }}</small></p>
+                        </div>
+                        <p class="mb-0">${{ item.final_total }}</p>
                         </div>
                     </div>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between mt-4">
                     <p class="mb-0 h4 fw-bold">總價</p>
-                    <p class="mb-0 h4 fw-bold">NT${{ countStore.currency(cart.total) }}</p>
+                    <p class="mb-0 h4 fw-bold">NT${{ countStore.currency(cart.final_total) }}</p>
                     </div>
                 </div>
                 </div>
@@ -70,7 +76,7 @@
                                 </Field>
                                 <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
                             </div>
-                            <div class="">
+                            <div class="mb-5">
                                 <label for="tel" class="text-muted mb-0 form-label">收件人電話</label>
                                 <Field 
                                     id="tel" 
@@ -85,9 +91,7 @@
                                 <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
                             </div>
                     
-                            <div class="bg-white p-4 mt-3">
                             <h4 class="fw-bold">2. 送貨地點</h4>
-                        
                             <p class="mt-1 mb-3">Shipping address</p>
                             <label for="address" class="form-label">收件人地址</label>
                                 <Field 
@@ -115,7 +119,7 @@
                             <div class="d-flex flex-column-reverse flex-md-row mt-4 justify-content-between align-items-md-center align-items-end w-100">
                                 <button type="submit" class="btn btn-dark py-3 px-7 rounded-0">前往付款</button>
                             </div>
-                            </div>
+                        
                         </Form>
                     </div>
                 </div>
@@ -125,15 +129,16 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useCounterStore } from "@/stores/counter";
 const  countStore = useCounterStore();
+import { useCartStore } from '@/stores/cartStore';
+const cartStore = useCartStore();
 import { useRouter } from "vue-router";
 const router = useRouter();
 
 const isLoading = ref(false);
-const cart = ref({});
+const cart = computed(() => cartStore.cart);
 const form = ref({
         user: {
           name: '',
@@ -144,25 +149,9 @@ const form = ref({
         message: '',
 })
 
-const getCart = async() => {
-  try{
-    isLoading.value = true;
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/cart`;
-    const res = await axios.get(api);
-    isLoading.value = false;
-    cart.value = res.data.data;
-    console.log(res);
-  }catch(error){
-    console.error('Error during get cart:', error);
-  }
-}
-
 const createOrder = async() => {
   try{
-    const order = form.value;
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/order`;
-    const res = await axios.post(api, { data:order });
-    const orderId = res.data.orderId;
+    const orderId = await cartStore.createOrder(form.value);
     router.push(`/user/checkout/${orderId}`);
   }catch(error){
     console.error('Error during create order:', error);
@@ -170,6 +159,6 @@ const createOrder = async() => {
 }
 
 onMounted(() => {
-  getCart();
+    cartStore.getCart();
 })
 </script>

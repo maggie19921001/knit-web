@@ -52,7 +52,7 @@
       </tr>
       </tbody>
     </table>
-      <div class="text-end" v-if="order.is_paid === false">
+      <div class="text-start" v-if="order.is_paid === false">
         <p class="mt-4 mb-2">付款方式</p>
         <div class="form-check mb-2">
           <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
@@ -64,14 +64,14 @@
           <label class="form-check-label text-muted" for="gridRadios2">ATM
           </label>
         </div>
-        <div class="form-check mb-2">
+        <div class="form-check mb-5">
           <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
           <label class="form-check-label text-muted" for="gridRadios3">ApplePay
           </label>
         </div>
         <button class="btn btn-dark py-3 px-7 rounded-0">確認付款去</button>
       </div>
-      <div class="text-end" v-else-if="order.is_paid === true">
+      <div class="text-start" v-else-if="order.is_paid === true">
         <button class="btn btn-dark py-3 px-7 rounded-0 disabled">付款完成</button>
       </div>
   </form>
@@ -79,45 +79,29 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
 const route = useRoute();
 
-const order = ref({
-  user:{},
-});
-const orderId = ref('');
-const isLoading = ref(false);
+import { useCartStore } from '@/stores/cartStore';
+const cartStore = useCartStore();
 
-const getOrder = async() => {
-  try{
-    isLoading.value = true;
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/order/${orderId.value}`;
-    const res = await axios.get(api);
-    isLoading.value = false;
-    order.value = res.data.order;
-  }catch(error){
-    console.error('Error during get order:', error);
-  }
-}
+const orderId = ref(route.params.orderId);
+// 使用 store 中的訂單數據
+const order = computed(() => cartStore.orderData);
 
+// 修改付款方法
 const payOrder = async() => {
-  try{
-    isLoading.value = true;
-    const api = `${import.meta.env.VITE_APP_API}api/${import.meta.env.VITE_APP_PATH}/pay/${orderId.value}`;
-    const res = await axios.post(api);
-    isLoading.value = false;
-    console.log(res);
-  }catch(error){
-    console.error('Error during pay order:', error);
-  }
+    try {
+        await cartStore.payOrder(orderId.value);
+    } catch(error) {
+        console.error('Error during pay order:', error);
+    }
 }
 
 onMounted(() => {
-  orderId.value = route.params.orderId;
-  getOrder();
+    cartStore.getOrder(orderId.value);
 });
 
 </script>
